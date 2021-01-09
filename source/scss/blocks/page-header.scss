@@ -237,13 +237,11 @@
   }
 
   a {
-    --animate-duration: 350ms;
-
     position: relative;
     display: block;
     color: inherit;
     padding: 0 0.5em 0.5em;
-    transition: color ease-in-out var(--animate-duration);
+    transition: color ease-in-out 350ms;
 
     &::after {
       content: "";
@@ -252,17 +250,18 @@
       width: 0;
       height: 2px;
       background-color: $c-light;
-      left: 100%;
-      transition-property: left, width, background-color;
-      transition-timing-function: ease-in-out;
-      transition-duration: var(--animate-duration);
+      right: 0;
+      transition: width ease-in-out 350ms,
+                  background-color ease-in-out 350ms;
 
 
       @media (max-width: $tablet) and (orientation: portrait) {
+        right: 0;
         background-color: $c-dark;
       }
 
       @media (max-width: $mobile) and (orientation: landscape) {
+        right: 0;
         background-color: $c-dark;
       }
     }
@@ -270,8 +269,8 @@
     &.active{
       &::after {
         left: 0;
+        right: auto;
         width: 100%;
-        transition-duration: 0s, var(--animate-duration);
       }
     }
 
@@ -285,8 +284,8 @@
         background-color: $c-purple;
 
         left: 0;
+        right: auto;
         width: 100%;
-        transition-duration: 0s, var(--animate-duration);
       }
     }
 
