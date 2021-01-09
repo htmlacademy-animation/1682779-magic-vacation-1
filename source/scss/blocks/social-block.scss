@@ -82,6 +82,7 @@
 }
 
 .social-block__list {
+
   @include list-reset;
   position: absolute;
   top: 100%;
@@ -89,6 +90,7 @@
   margin-top: 1.5rem;
   opacity: 0;
   pointer-events: none;
+  transition: opacity ease 350ms;
 
   @media (min-width: $stop-scaling) {
     margin-top: 15px;
@@ -161,6 +163,8 @@
 }
 
 .social-block__link {
+  --fade-in-link-delay: 0ms;
+
   position: relative;
   display: block;
   width: 4rem;
@@ -168,6 +172,34 @@
   color: $c-light;
   border: 2px solid transparent;
   border-radius: 50%;
+
+  opacity: 0;
+  transform: translate(0em, 1em);
+  transition: color ease 350ms,
+              opacity ease-out 350ms var(--fade-in-link-delay),
+              transform ease-out 350ms var(--fade-in-link-delay);
+
+
+  .social-block--active &,
+  .social-block:hover &,
+  .social-block__list:hover &,
+  .social-block__toggler:focus + .social-block__list &
+  {
+    opacity: 1;
+    transform: translate(0em, 0em);
+
+    &--fb {
+      --fade-in-link-delay: 0ms;
+    }
+
+    &--insta {
+      --fade-in-link-delay: 200ms;
+    }
+
+    &--vk {
+      --fade-in-link-delay: 400ms;
+    }
+  }
 
   @media (min-width: $stop-scaling) {
     width: 40px;
@@ -240,5 +272,17 @@
         height: 10px;
       }
     }
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: all ease 350ms;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0%);
   }
 }
