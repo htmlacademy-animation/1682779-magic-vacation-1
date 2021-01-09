@@ -237,20 +237,26 @@
   }
 
   a {
+    --animate-duration: 350ms;
+
     position: relative;
     display: block;
     color: inherit;
     padding: 0 0.5em 0.5em;
+    transition: color ease-in-out var(--animate-duration);
 
     &::after {
       content: "";
       position: absolute;
       bottom: 0;
-      width: 100%;
+      width: 0;
       height: 2px;
       background-color: $c-light;
-      display: none;
-      left: 0;
+      left: 100%;
+      transition-property: left, width, background-color;
+      transition-timing-function: ease-in-out;
+      transition-duration: var(--animate-duration);
+
 
       @media (max-width: $tablet) and (orientation: portrait) {
         left: 0;
@@ -265,9 +271,11 @@
       }
     }
 
-    &.active {
+    &.active{
       &::after {
-        display: block;
+        left: 0;
+        width: 100%;
+        transition-duration: 0s, var(--animate-duration);
       }
     }
 
@@ -279,8 +287,13 @@
       &::after {
         opacity: 1;
         background-color: $c-purple;
+
+        left: 0;
+        width: 100%;
+        transition-duration: 0s, var(--animate-duration);
       }
     }
+
   }
 }
 
