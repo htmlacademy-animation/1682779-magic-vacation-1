@@ -18,7 +18,7 @@
   color: $c-dark;
   border-radius: 50%;
   transition: all ease 350ms;
-  
+
   @media (max-width: $tablet) and (orientation: portrait) {
     display: none;
   }
@@ -270,7 +270,7 @@
       height: 1rem;
 
       @media (min-width: $stop-scaling) {
-        width: 10px;
+        width: 17px;
         height: 10px;
       }
     }
