@@ -276,15 +276,3 @@
     }
   }
 }
-
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-100%);
-    transition: all ease 350ms;
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0%);
-  }
-}
