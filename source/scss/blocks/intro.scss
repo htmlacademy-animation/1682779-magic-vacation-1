@@ -133,6 +133,9 @@
       height: 1.1rem;
     }
   }
+
+  // Animation
+  @include fade-from-for-active-screen(translateY(1em))
 }
 
 .intro__label {

@@ -58,3 +58,16 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+@mixin for-active-screen($insideCascade: '') {
+  .screen.screen--show #{$insideCascade} &,
+  .screen.active #{$insideCascade} & {
+    @content;
+  }
+}
+
+@mixin for-not-active-screen($insideCascade: '') {
+  .screen:not(.active, .screen--show) #{$insideCascade} & {
+    @content;
+  }
+}

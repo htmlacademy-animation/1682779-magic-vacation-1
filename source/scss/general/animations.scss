@@ -1,0 +1,17 @@
+@mixin fade-from-for-active-screen(
+  $fromTransform,
+  $duration: 0.8s,
+  $activeInsideCascade: '',
+) {
+  opacity: 0;
+  transform: $fromTransform;
+  transition-property: opacity, transform;
+  transition-timing-function: ease-in-out;
+  transition-duration: $duration;
+
+  @include for-active-screen($activeInsideCascade) {
+    opacity: 1;
+    transform: translate(0);
+    transition-delay: 0, $duration;
+  }
+}
