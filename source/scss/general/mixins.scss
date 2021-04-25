@@ -71,3 +71,14 @@
     @content;
   }
 }
+
+@mixin for-loaded-body($insideCascade: '') {
+  body.body--loaded #{$insideCascade} & {
+    @content;
+  }
+}
+@mixin for-not-loaded-body($insideCascade: '') {
+  body:not(.body--loaded) #{$insideCascade} & {
+    @content;
+  }
+}
