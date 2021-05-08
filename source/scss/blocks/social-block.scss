@@ -36,14 +36,14 @@
     background-color: $c-light;
     border: 2px solid $c-light;
     z-index: -1;
-    transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%) scale(0);
     transition-property: width, height, transform;
     transition-duration: 350ms;
     transition-delay: 0s, 0s, 0.3s;
     transition-timing-function: ease, ease, cubic-bezier(0.22, 0.46, 0.68, 1.56);
 
-    @include for-not-loaded-body {
-      transform: translate(-50%, -50%) scale(0);
+    @include for-loaded-body {
+      transform: translate(-50%, -50%) scale(1);
     }
   }
 

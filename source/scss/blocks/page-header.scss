@@ -270,11 +270,11 @@
       height: 2px;
       background-color: $c-light;
       right: 0;
-      transition: width ease-in-out 350ms,
-      background-color ease-in-out 350ms;
+      transition: width ease-in-out 350ms, background-color ease-in-out 350ms;
+      transition-delay: var(--await-logo-loaded-delay);
 
-      @include for-not-loaded-body {
-        transition-delay: var(--await-logo-loaded-delay);
+      @include for-loaded-body {
+        transition-delay: 0;
       }
 
       @media (max-width: $tablet) and (orientation: portrait) {
