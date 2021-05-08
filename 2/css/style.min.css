@@ -1895,9 +1895,10 @@ img {
       height: 2px;
       background-color: #ffffff;
       right: 0;
-      transition: width ease-in-out 350ms, background-color ease-in-out 350ms; }
-      body:not(.body--loaded) .page-header__menu a::after {
-        transition-delay: var(--await-logo-loaded-delay); }
+      transition: width ease-in-out 350ms, background-color ease-in-out 350ms;
+      transition-delay: var(--await-logo-loaded-delay); }
+      body.body--loaded .page-header__menu a::after {
+        transition-delay: 0; }
       @media (max-width: 1024px) and (orientation: portrait) {
         .page-header__menu a::after {
           right: 0;
@@ -2645,10 +2646,10 @@ img {
   color: #5f458c;
   background-color: #ffffff;
   z-index: 1;
-  transform: translateY(0);
+  transform: translateY(100%);
   transition: transform 1s cubic-bezier(0.16, 1, 0.46, 1); }
   body:not(.body--loaded) .screen__footer {
-    transform: translateY(100%); }
+    transform: translateY(0); }
   @media (max-width: 1024px) and (orientation: portrait) {
     .screen__footer {
       width: 3.5rem;
@@ -3206,13 +3207,13 @@ img {
     background-color: #ffffff;
     border: 2px solid #ffffff;
     z-index: -1;
-    transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%) scale(0);
     transition-property: width, height, transform;
     transition-duration: 350ms;
     transition-delay: 0s, 0s, 0.3s;
     transition-timing-function: ease, ease, cubic-bezier(0.22, 0.46, 0.68, 1.56); }
-    body:not(.body--loaded) .social-block__toggler::before {
-      transform: translate(-50%, -50%) scale(0); }
+    body.body--loaded .social-block__toggler::before {
+      transform: translate(-50%, -50%) scale(1); }
   .social-block__toggler svg {
     position: absolute;
     top: 50%;
