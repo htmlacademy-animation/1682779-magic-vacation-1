@@ -36,7 +36,15 @@
     background-color: $c-light;
     border: 2px solid $c-light;
     z-index: -1;
-    transition: all ease 350ms;
+    transform: translate(-50%, -50%) scale(0);
+    transition-property: width, height, transform;
+    transition-duration: 350ms;
+    transition-delay: 0s, 0s, 0.3s;
+    transition-timing-function: ease, ease, cubic-bezier(0.22, 0.46, 0.68, 1.56);
+
+    @include for-loaded-body {
+      transform: translate(-50%, -50%) scale(1);
+    }
   }
 
   svg {
@@ -178,15 +186,13 @@
   opacity: 0;
   transform: translate(0em, 1em);
   transition: color ease 350ms,
-              opacity ease-out 350ms var(--fade-in-link-delay),
-              transform ease-out 350ms var(--fade-in-link-delay);
-
+  opacity ease-out 350ms var(--fade-in-link-delay),
+  transform ease-out 350ms var(--fade-in-link-delay);
 
   .social-block--active &,
   .social-block:hover &,
   .social-block__list:hover &,
-  .social-block__toggler:focus + .social-block__list &
-  {
+  .social-block__toggler:focus + .social-block__list & {
     opacity: 1;
     transform: translate(0em, 0em);
 

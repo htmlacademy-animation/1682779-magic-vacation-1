@@ -35,6 +35,17 @@
   padding: 1rem 0;
   width: 10rem;
   color: $c-light;
+  transform: translateX(0);
+  opacity: 1;
+
+  transition-property: transform, opacity;
+  transition-duration: 1s;
+  transition-timing-function: $on-body-loaded-tf;
+
+  @include for-not-loaded-body {
+    transform: translateX(-20%);
+    opacity: 0;
+  }
 
   @media (min-width: $stop-scaling) {
     top: -5px;
@@ -178,6 +189,14 @@
   line-height: 1.0418;
   color: $c-light;
 
+  --await-logo-loaded-delay: 0.3s;
+  opacity: 1;
+  transition: opacity $on-body-loaded-tf 1s var(--await-logo-loaded-delay);
+
+  @include for-not-loaded-body {
+    opacity: 0;
+  }
+
   @media (min-width: $stop-scaling) {
     font-size: 12px;
   }
@@ -251,9 +270,12 @@
       height: 2px;
       background-color: $c-light;
       right: 0;
-      transition: width ease-in-out 350ms,
-                  background-color ease-in-out 350ms;
+      transition: width ease-in-out 350ms, background-color ease-in-out 350ms;
+      transition-delay: var(--await-logo-loaded-delay);
 
+      @include for-loaded-body {
+        transition-delay: 0;
+      }
 
       @media (max-width: $tablet) and (orientation: portrait) {
         right: 0;
@@ -266,7 +288,7 @@
       }
     }
 
-    &.active{
+    &.active {
       &::after {
         left: 0;
         right: auto;
