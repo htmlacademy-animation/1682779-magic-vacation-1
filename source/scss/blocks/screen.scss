@@ -49,7 +49,7 @@
   transform: translateY(100%);
   transition: transform 1s $on-body-loaded-tf;
 
-  @include for-not-loaded-body {
+  @include for-loaded-body {
     transform: translateY(0);
   }
 
@@ -308,7 +308,7 @@
 }
 
 .screen--prizes {
-  background-color: $c-dark;
+  background-color: transparent;
 }
 
 .screen--game {
