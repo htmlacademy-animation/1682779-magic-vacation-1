@@ -1,3 +1,6 @@
+$rules-display-duration: 600ms;
+$rules-display-delay: 350ms;
+
 .rules {
   position: relative;
   flex-grow: 1;
@@ -175,13 +178,69 @@
       line-height: 3rem;
       font-size: 1.4rem;
     }
+
+    animation-name: bullet-scale;
+    animation-duration: $rules-display-duration;
+    animation-fill-mode: both;
+    animation-timing-function: cubic-bezier(0.42, 0, 0.45, 2);
+  }
+
+  @keyframes bullet-scale {
+    0% {
+      transform: scale(0);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  &:nth-child(2n)::before {
+    animation-delay: $rules-display-delay * 1;
+  }
+
+  &:nth-child(3n)::before {
+    animation-delay: $rules-display-delay * 2;
+  }
+
+  &:nth-child(4n)::before {
+    animation-delay: $rules-display-delay * 3;
   }
 
   p {
     margin: 0;
+    animation-name: paragraph-display;
+    animation-duration: $rules-display-duration;
+    animation-delay: $rules-display-duration / 2;
+    animation-fill-mode: both;
+    animation-timing-function: ease-out;
 
     @media (max-width: $tablet) and (orientation: portrait) {
       min-height: calc(1.4rem * 2.2);
+    }
+  }
+
+  &:nth-child(2n) p {
+    animation-delay: $rules-display-duration / 2 + $rules-display-delay * 1;
+  }
+
+  &:nth-child(3n) p {
+    animation-delay: $rules-display-duration / 2 + $rules-display-delay * 2;
+  }
+
+  &:nth-child(4n) p {
+    animation-delay: $rules-display-duration / 2 + $rules-display-delay * 3;
+  }
+
+  @keyframes paragraph-display {
+    0% {
+      transform: translateX(15px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
     }
   }
 }
@@ -209,5 +268,33 @@
   @media (max-width: $mobile) and (orientation: landscape) {
     bottom: 2rem;
     right: 1.5rem;
+  }
+
+  &::before {
+    width: unset;
+    right: 0;
+    top: 0;
+    transform: unset;
+    left: 100%;
+    border-width: 0;
+
+    animation-name: link-roll;
+    animation-duration: 500ms;
+    animation-delay: $rules-display-delay * 3 + $rules-display-duration;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes link-roll {
+    0% {
+      left: 100%;
+      border-width: 0;
+    }
+    0%, 80% {
+      z-index: 1;
+    }
+    to {
+      left: 0;
+      z-index: -1;
+    }
   }
 }
