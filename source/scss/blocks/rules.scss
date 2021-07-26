@@ -94,7 +94,10 @@ $rules-display-step: $rules-display-duration / 4 * 3;
 .rules__list {
   @include list-reset;
   counter-reset: li;
-  column-count: 2;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-auto-flow: column;
   column-gap: 9.6rem;
   margin: auto;
   padding-top: 7rem;
@@ -107,7 +110,8 @@ $rules-display-step: $rules-display-duration / 4 * 3;
   }
 
   @media (max-width: $tablet) and (orientation: portrait) {
-    column-count: auto;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(1, 1fr);
     column-gap: 0;
     padding: 0 2.5rem;
   }
