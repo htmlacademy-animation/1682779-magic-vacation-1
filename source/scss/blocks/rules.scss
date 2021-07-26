@@ -1,5 +1,6 @@
 $rules-display-duration: 600ms;
-$rules-display-delay: 350ms;
+$rules-display-counter-delay: 225ms;
+$rules-display-step: $rules-display-duration / 4 * 3;
 
 .rules {
   position: relative;
@@ -147,21 +148,14 @@ $rules-display-delay: 350ms;
     font-size: 1.2rem;
   }
 
-  &::before {
-    content: counter(li);
-    counter-increment: li;
+  &::before,
+  &::after {
     position: absolute;
     top: 0;
     left: 0;
     width: 4.5rem;
     height: 4.5rem;
-    font-family: $font-alt;
-    font-weight: 400;
-    font-size: 2.4rem;
-    background-color: $c-purple;
-    border-radius: 50%;
-    line-height: 5rem;
-    text-align: center;
+
 
     @media (max-width: $tablet) and (orientation: portrait) {
       top: 1rem;
@@ -178,41 +172,94 @@ $rules-display-delay: 350ms;
       line-height: 3rem;
       font-size: 1.4rem;
     }
+  }
+
+  &::before {
+    content: '';
+    background: $c-purple;
+    border-radius: 50%;
 
     animation-name: bullet-scale;
     animation-duration: $rules-display-duration;
     animation-fill-mode: both;
     animation-timing-function: cubic-bezier(0.42, 0, 0.45, 2);
+    will-change: transform;
   }
 
   @keyframes bullet-scale {
     0% {
       transform: scale(0);
-      opacity: 0;
     }
     100% {
       transform: scale(1);
-      opacity: 1;
     }
   }
 
   &:nth-child(2n)::before {
-    animation-delay: $rules-display-delay * 1;
+    animation-delay: $rules-display-step;
   }
 
   &:nth-child(3n)::before {
-    animation-delay: $rules-display-delay * 2;
+    animation-delay: $rules-display-step + $rules-display-duration;
   }
 
   &:nth-child(4n)::before {
-    animation-delay: $rules-display-delay * 3;
+    animation-delay: $rules-display-step + $rules-display-duration * 2;
+  }
+
+  &::after {
+    content: counter(li);
+    counter-increment: li;
+    font-family: $font-alt;
+    font-weight: 400;
+    font-size: 2.4rem;
+    line-height: 5rem;
+    text-align: center;
+
+    @media (max-width: $tablet) and (orientation: portrait) {
+      line-height: 3rem;
+      font-size: 1.4rem;
+    }
+
+    @media (max-width: $mobile) and (orientation: landscape) {
+      line-height: 3rem;
+      font-size: 1.4rem;
+    }
+
+    will-change: opacity;
+    animation-name: counter-show;
+    animation-duration: $rules-display-duration - $rules-display-counter-delay;
+    animation-delay: $rules-display-counter-delay;
+    animation-fill-mode: both;
+    animation-timing-function: ease-out;
+  }
+
+  &:nth-child(2n)::after {
+    animation-delay: $rules-display-counter-delay + $rules-display-duration;
+  }
+
+  &:nth-child(3n)::after {
+    animation-delay: $rules-display-counter-delay + $rules-display-duration * 2;
+  }
+
+  &:nth-child(4n)::after {
+    animation-delay: $rules-display-counter-delay + $rules-display-duration * 3;
+  }
+
+  @keyframes counter-show {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
   }
 
   p {
     margin: 0;
     animation-name: paragraph-display;
     animation-duration: $rules-display-duration;
-    animation-delay: $rules-display-duration / 2;
+    animation-delay: $rules-display-step;
     animation-fill-mode: both;
     animation-timing-function: ease-out;
 
@@ -222,15 +269,15 @@ $rules-display-delay: 350ms;
   }
 
   &:nth-child(2n) p {
-    animation-delay: $rules-display-duration / 2 + $rules-display-delay * 1;
+    animation-delay: $rules-display-step + $rules-display-duration;
   }
 
   &:nth-child(3n) p {
-    animation-delay: $rules-display-duration / 2 + $rules-display-delay * 2;
+    animation-delay: $rules-display-step + $rules-display-duration * 2;
   }
 
   &:nth-child(4n) p {
-    animation-delay: $rules-display-duration / 2 + $rules-display-delay * 3;
+    animation-delay: $rules-display-step + $rules-display-duration * 3;
   }
 
   @keyframes paragraph-display {
@@ -280,7 +327,7 @@ $rules-display-delay: 350ms;
 
     animation-name: link-roll;
     animation-duration: 500ms;
-    animation-delay: $rules-display-delay * 3 + $rules-display-duration;
+    animation-delay: $rules-display-duration * 3 + $rules-display-step;
     animation-fill-mode: forwards;
   }
 
