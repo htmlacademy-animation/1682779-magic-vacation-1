@@ -3137,28 +3137,15 @@ body.body--loaded .page-header__menu a::after {
     font-size: 1.2rem;
   }
 }
-.rules__item::before {
-  content: counter(li);
-  counter-increment: li;
+.rules__item::before, .rules__item::after {
   position: absolute;
   top: 0;
   left: 0;
   width: 4.5rem;
   height: 4.5rem;
-  font-family: "Radical", "Arial", sans-serif;
-  font-weight: 400;
-  font-size: 2.4rem;
-  background-color: #a67ee5;
-  border-radius: 50%;
-  line-height: 5rem;
-  text-align: center;
-  animation-name: bullet-scale;
-  animation-duration: 600ms;
-  animation-fill-mode: both;
-  animation-timing-function: cubic-bezier(0.42, 0, 0.45, 2);
 }
 @media (max-width: 1024px) and (orientation: portrait) {
-  .rules__item::before {
+  .rules__item::before, .rules__item::after {
     top: 1rem;
     width: 2.5rem;
     height: 2.5rem;
@@ -3167,7 +3154,7 @@ body.body--loaded .page-header__menu a::after {
   }
 }
 @media (max-width: 768px) and (orientation: landscape) {
-  .rules__item::before {
+  .rules__item::before, .rules__item::after {
     top: 0.6rem;
     width: 2.5rem;
     height: 2.5rem;
@@ -3175,30 +3162,82 @@ body.body--loaded .page-header__menu a::after {
     font-size: 1.4rem;
   }
 }
+.rules__item::before {
+  content: "";
+  background: #a67ee5;
+  border-radius: 50%;
+  animation-name: bullet-scale;
+  animation-duration: 600ms;
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.42, 0, 0.45, 2);
+  will-change: transform;
+}
 @keyframes bullet-scale {
   0% {
     transform: scale(0);
-    opacity: 0;
   }
   100% {
     transform: scale(1);
-    opacity: 1;
   }
 }
 .rules__item:nth-child(2n)::before {
-  animation-delay: 350ms;
+  animation-delay: 450ms;
 }
 .rules__item:nth-child(3n)::before {
-  animation-delay: 700ms;
+  animation-delay: 1050ms;
 }
 .rules__item:nth-child(4n)::before {
-  animation-delay: 1050ms;
+  animation-delay: 1650ms;
+}
+.rules__item::after {
+  content: counter(li);
+  counter-increment: li;
+  font-family: "Radical", "Arial", sans-serif;
+  font-weight: 400;
+  font-size: 2.4rem;
+  line-height: 5rem;
+  text-align: center;
+  will-change: opacity;
+  animation-name: counter-show;
+  animation-duration: 375ms;
+  animation-delay: 225ms;
+  animation-fill-mode: both;
+  animation-timing-function: ease-out;
+}
+@media (max-width: 1024px) and (orientation: portrait) {
+  .rules__item::after {
+    line-height: 3rem;
+    font-size: 1.4rem;
+  }
+}
+@media (max-width: 768px) and (orientation: landscape) {
+  .rules__item::after {
+    line-height: 3rem;
+    font-size: 1.4rem;
+  }
+}
+.rules__item:nth-child(2n)::after {
+  animation-delay: 825ms;
+}
+.rules__item:nth-child(3n)::after {
+  animation-delay: 1425ms;
+}
+.rules__item:nth-child(4n)::after {
+  animation-delay: 2025ms;
+}
+@keyframes counter-show {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 .rules__item p {
   margin: 0;
   animation-name: paragraph-display;
   animation-duration: 600ms;
-  animation-delay: 300ms;
+  animation-delay: 450ms;
   animation-fill-mode: both;
   animation-timing-function: ease-out;
 }
@@ -3208,13 +3247,13 @@ body.body--loaded .page-header__menu a::after {
   }
 }
 .rules__item:nth-child(2n) p {
-  animation-delay: 650ms;
+  animation-delay: 1050ms;
 }
 .rules__item:nth-child(3n) p {
-  animation-delay: 1000ms;
+  animation-delay: 1650ms;
 }
 .rules__item:nth-child(4n) p {
-  animation-delay: 1350ms;
+  animation-delay: 2250ms;
 }
 @keyframes paragraph-display {
   0% {
@@ -3265,7 +3304,7 @@ body.body--loaded .page-header__menu a::after {
   border-width: 0;
   animation-name: link-roll;
   animation-duration: 500ms;
-  animation-delay: 1650ms;
+  animation-delay: 2250ms;
   animation-fill-mode: forwards;
 }
 @keyframes link-roll {
